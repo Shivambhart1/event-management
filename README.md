@@ -30,7 +30,8 @@ Follow these steps to get the project running locally:
 
 2. **Install dependencies for frontend and backend:**
 
-   ```cd client
+   ```
+   cd client
       npm install
     cd backend
       npm install
