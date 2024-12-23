@@ -1,0 +1,227 @@
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.task-container {
+  max-width: 800px; /* Reduced from 1200px for better vertical layout */
+  margin: 0 auto;
+  padding: 2rem;
+  width: calc(100% - 4rem);
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  display: inline-block;
+  background-color: black;
+  color: #fffef0;
+  padding: 0.5rem 1rem;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+h1::before {
+  content: "> ";
+  margin-right: 0.5rem;
+  color: #00ff40;
+}
+
+/* Form Styles */
+form {
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #2d3748;
+}
+
+input,
+select {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-family: inherit;
+  background-color: white;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+}
+
+.add-task-btn {
+  font-family: inherit;
+  margin-top: 1.25rem;
+  font-weight: bold;
+  background-color: #00ff40;
+  color: black;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #00e639;
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Task List Styles */
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.task-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.task-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.08);
+}
+
+.task-name {
+  word-wrap: break-word;
+  color: #2d3748;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+}
+
+.task-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.task-deadline,
+.task-status,
+.task-assigned {
+  color: #4a5568;
+  font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-actions {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toggle-status-btn {
+  font-family: "Space Grotesk", sans-serif;
+  background-color: #a600a0;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
+  text-align: center;
+}
+
+.toggle-status-btn:hover {
+  background-color: #950090;
+  transform: translateY(-1px);
+}
+
+/* No Tasks Available */
+.no-tasks {
+  text-align: center;
+  color: #718096;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Loading State */
+.loading {
+  text-align: center;
+  color: #718096;
+  padding: 2rem;
+  font-style: italic;
+}
+
+.task-display h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .task-container {
+    padding: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  form {
+    padding: 1.5rem;
+  }
+
+  .task-card {
+    padding: 1.25rem;
+  }
+
+  .toggle-status-btn {
+    width: 100%;
+    padding: 0.75rem 1rem;
+  }
+}

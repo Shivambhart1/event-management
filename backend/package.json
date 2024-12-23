@@ -1,0 +1,25 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "backend": "file:",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "dotenv-config": "^0.1.1",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.2",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "websocket": "^1.0.35"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
