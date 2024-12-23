@@ -22,7 +22,25 @@ This is a Task Management System built using React for the frontend and a backen
 Follow these steps to get the project running locally:
 
 1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/Shivambhart1/event-management.git
    cd task-management
    ```
+
+2. **Install dependencies for frontend and backend:**
+
+   ```cd client
+      npm install
+    cd backend
+      npm install
+   ```
+
+3. **Run the frontend and backend:**
+
+### Navigate to client and backend directory in two different terminals
+
+```
+npm run dev
+nodemon index.js
+```
