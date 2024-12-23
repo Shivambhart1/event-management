@@ -32,16 +32,23 @@ Follow these steps to get the project running locally:
 
    ```
    cd client
-      npm install
-    cd backend
-      npm install
+   npm install
+   ```
+
+   ```
+   cd backend
+   npm install
    ```
 
 3. **Run the frontend and backend:**
 
-### Navigate to client and backend directory in two different terminals
+   #### Navigate to client and backend directory in two different terminals
 
 ```
 npm run dev
+```
+
+```
 nodemon index.js
+
 ```
