@@ -37,38 +37,11 @@ router.post("/", async (req, res) => {
   }
 });
 
-// router.get("/attendee/:attendeeId", async (req, res) => {
-//   try {
-//     const attendeeId = req.params.attendeeId;
-
-//     const attendee = await Attendee.findById(attendeeId);
-//     if (!attendee) {
-//       return res.status(404).json({ message: "Attendee not found" });
-//     }
-
-//     const tasks = await Task.find({
-//       _id: { $in: attendee.assignedTasks },
-//     }).populate("assignedTo", "name email");
-
-//     if (!tasks || tasks.length === 0) {
-//       return res
-//         .status(404)
-//         .json({ message: "No tasks found for this attendee" });
-//     }
-
-//     res.status(200).json(tasks);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "Error fetching tasks", error: error.message });
-//   }
-// });
-
 router.get("/", async (req, res) => {
   try {
     const tasks = await Task.find()
-      .populate("assignedTo", "name email") // Populating assignedTo field with name and email
-      .populate("eventId", "name"); // Populating eventId field with name
+      .populate("assignedTo", "name email")
+      .populate("eventId", "name");
 
     if (tasks.length === 0) {
       return res.status(404).json({ message: "No tasks found" });
