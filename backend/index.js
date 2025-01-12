@@ -1,21 +1,21 @@
+require("dotenv").config();
 const express = require("express");
-const http = require("http");
 const mongoose = require("mongoose");
-const dotenv = require("dotenv");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const http = require("http");
 
 const eventRoutes = require("./routes/events");
 const taskRoutes = require("./routes/tasks");
 const attendeeRoutes = require("./routes/attendees");
 
-dotenv.config();
 const app = express();
 
 const server = http.createServer(app);
 
 app.use(cors({
-  origin: ["http://localhost:5173", "eventhub-nine.vercel.app"],
+  origin: ["http://localhost:5173", "https://eventhub-nine.vercel.app"],
+  credentials: true
 }));
 app.use(bodyParser.json());
 
@@ -34,5 +34,5 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello from Backend</h1>");
 });
 
-const PORT = process.env.PORT || 3000;
-server.listen(PORT, "0.0.0.0", () => console.log(`Server running on port ${PORT}`));
+const port = process.env.PORT || 3000;
+server.listen(port, "0.0.0.0", () => console.log(`Server running on port ${port}`));
