@@ -87,7 +87,6 @@ function TaskComponent() {
       const updatedTask = { ...task, status: newStatus };
       const response = await apiClient.put(`/tasks/${task._id}`, updatedTask);
 
-      // Preserve the enriched data while updating the task
       const enrichedUpdatedTask = {
         ...response.data,
         assignedToDetails: attendees.find(

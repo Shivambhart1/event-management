@@ -14,11 +14,15 @@ const app = express();
 
 const server = http.createServer(app);
 
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:5173", "eventhub-nine.vercel.app"],
+}));
 app.use(bodyParser.json());
 
+const db_uri = process.env.MONGODB_URI;
+// console.log(db_uri)
 mongoose
-  .connect("mongodb://localhost:27017/event_management")
+  .connect(db_uri)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Database connection failed:", err));
 
