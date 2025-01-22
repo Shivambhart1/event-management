@@ -14,8 +14,8 @@ const app = express();
 const server = http.createServer(app);
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://eventhub-nine.vercel.app"],
-  credentials: true
+  origin: ["https://eventhub-nine.vercel.app"],
+  // credentials: true
 }));
 app.use(bodyParser.json());
 
