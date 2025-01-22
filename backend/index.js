@@ -13,8 +13,11 @@ const app = express();
 
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "https://eventhub-nine.vercel.app",
+];
 app.use(cors({
-  origin: ["https://eventhub-nine.vercel.app"],
+  origin: allowedOrigins,
   // credentials: true
 }));
 app.use(bodyParser.json());
