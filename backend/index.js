@@ -11,32 +11,36 @@ const attendeeRoutes = require("./routes/attendees");
 
 const app = express();
 
-const server = http.createServer(app);
-
-const allowedOrigins = [
-  "https://eventhub-nine.vercel.app",
-];
+const allowedOrigins = ["https://eventhub-nine.vercel.app"];
 app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+app.options("*", cors()); // Handle preflight requests
+
 app.use(bodyParser.json());
 
 const db_uri = process.env.MONGODB_URI;
-// console.log(db_uri)
 mongoose
-  .connect(db_uri)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("Database connection failed:", err));
+    .connect(db_uri)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => console.error("Database connection failed:", err));
 
 app.use("/api/events", eventRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/attendees", attendeeRoutes);
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello from Backend</h1>");
+    res.send("<h1>Hello from Backend</h1>");
 });
 
 const port = process.env.PORT || 3000;
+const server = http.createServer(app);
 server.listen(port, "0.0.0.0", () => console.log(`Server running on port ${port}`));
