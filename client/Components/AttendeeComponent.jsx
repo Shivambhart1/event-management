@@ -14,6 +14,7 @@ const AttendeeComponent = () => {
         setLoading(true);
         const { data: attendeesData } = await apiClient.get("/attendees");
         setAttendees(attendeesData);
+        console.log(attendeesData);
         setLoading(false);
       } catch (err) {
         setError("Failed to fetch data: " + err.message);
