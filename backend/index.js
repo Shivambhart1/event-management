@@ -12,26 +12,13 @@ const attendeeRoutes = require("./routes/attendees");
 const app = express();
 
 const allowedOrigins = ["https://eventhub-nine.vercel.app"];
-app.use(cors({
-    origin: (origin, callback) => {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+app.use(cors({origin: allowedOrigins,
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 app.options("*", cors()); // Handle preflight requests
 
 app.use(bodyParser.json());
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-})
 
 
 const db_uri = process.env.MONGODB_URI;
