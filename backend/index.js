@@ -27,10 +27,11 @@ app.options("*", cors()); // Handle preflight requests
 
 app.use(bodyParser.json());
 app.use((req, res, next) => {
-  console.log("Origin:", req.headers.origin);
-  console.log("Headers:", req.headers);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   next();
-});
+})
 
 
 const db_uri = process.env.MONGODB_URI;
