@@ -26,6 +26,12 @@ app.use(cors({
 app.options("*", cors()); // Handle preflight requests
 
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+  console.log("Origin:", req.headers.origin);
+  console.log("Headers:", req.headers);
+  next();
+});
+
 
 const db_uri = process.env.MONGODB_URI;
 mongoose
