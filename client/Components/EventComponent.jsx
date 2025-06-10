@@ -67,7 +67,7 @@ function EventComponent() {
         `/events/${editingEvent._id}`,
         newEvent
       );
-      const updatedEvents = events.map((event) =>
+      const updatedEvents = events?.map((event) =>
         event._id === editingEvent._id ? response.data : event
       );
       setEvents(updatedEvents);
@@ -146,7 +146,7 @@ function EventComponent() {
         {filteredEvents.length === 0 ? (
           <p className="no-events">No events found</p>
         ) : (
-          filteredEvents.map((event) => (
+          filteredEvents?.map((event) => (
             <div key={event._id} className="event-card">
               <h5 className="event-name">{event.name}</h5>
               <p className="event-description">{event.description}</p>

@@ -29,8 +29,7 @@ function TaskComponent() {
         setEvents(eventResponse.data);
         setAttendees(attendeeResponse.data);
 
-        // Enrich task data with attendee and event details before setting to state
-        const enrichedTasks = taskResponse.data.map((task) => ({
+        const enrichedTasks = taskResponse?.data?.map((task) => ({
           ...task,
           assignedToDetails: eventResponse.data.find(
             (a) => a._id === task.assignedTo
@@ -59,7 +58,6 @@ function TaskComponent() {
     try {
       const response = await apiClient.post("/tasks", newTask);
 
-      // Enrich the new task with attendee and event details
       const enrichedNewTask = {
         ...response.data,
         assignedToDetails: attendees.find(
@@ -96,7 +94,7 @@ function TaskComponent() {
       };
 
       setTasks((prevTasks) =>
-        prevTasks.map((t) => (t._id === task._id ? enrichedUpdatedTask : t))
+        prevTasks?.map((t) => (t._id === task._id ? enrichedUpdatedTask : t))
       );
     } catch (error) {
       console.error("Error updating task status:", error);
@@ -130,7 +128,7 @@ function TaskComponent() {
           >
             <option value="">Select Event</option>
             {events.length > 0 ? (
-              events.map((event) => (
+              events?.map((event) => (
                 <option key={event._id} value={event._id}>
                   {event.name}
                 </option>
@@ -167,7 +165,7 @@ function TaskComponent() {
             onChange={handleInputChange}
           >
             <option value="">Assign Attendee</option>
-            {attendees.map((attendee) => (
+            {attendees?.map((attendee) => (
               <option key={attendee._id} value={attendee._id}>
                 {attendee.name} ({attendee.email})
               </option>
@@ -187,7 +185,7 @@ function TaskComponent() {
         <h3>All Tasks</h3>
         {tasks.length > 0 ? (
           <div className="task-list">
-            {tasks.map((task) => (
+            {tasks?.map((task) => (
               <div key={task._id} className="task-card">
                 <h5 className="task-name">Task Name: {task.name}</h5>
                 <p className="task-deadline">

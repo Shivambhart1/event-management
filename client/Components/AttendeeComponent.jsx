@@ -9,7 +9,7 @@ const AttendeeComponent = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchAttendeesAndTasks = async () => {
+    const fetchAttendeesAndTasks = async () => {  
       try {
         setLoading(true);
         const { data: attendeesData } = await apiClient.get("/attendees");
@@ -92,7 +92,7 @@ const AttendeeComponent = () => {
 
       <h2>Attendee List</h2>
       <ul className="attendee-list">
-        {attendees.map((attendee) => (
+        {attendees?.map((attendee) => (
           <li key={attendee._id} className="attendee-item">
             <p className="attendee-details">
               <strong>{attendee.name}</strong>
@@ -106,7 +106,7 @@ const AttendeeComponent = () => {
               <>
                 <p>Assigned Tasks:</p>
                 <ul>
-                  {attendee.assignedTasks.map((task) => (
+                  {attendee?.assignedTasks?.map((task) => (
                     <li key={task._id}>
                       <p>
                         <strong>Task Name: </strong>
