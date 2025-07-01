@@ -1,8 +1,7 @@
 import axios from "axios";
 
-console.log(import.meta.env.BACKEND_URL);
 const apiClient = axios.create({
-  baseURL: import.meta.env.BACKEND_URL,
+  baseURL: 'https://event-management-4n0n.onrender.com/api',
   headers: {
     "Content-Type": "application/json",
   },

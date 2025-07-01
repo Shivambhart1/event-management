@@ -10,29 +10,26 @@ const taskRoutes = require("./routes/tasks");
 const attendeeRoutes = require("./routes/attendees");
 
 const app = express();
-
-const allowedOrigins = ["https://eventhub-nine.vercel.app"];
-app.use(cors({origin: allowedOrigins,
-  credentials: true,
+app.use(cors({
+  origin: ['http://localhost:5173', process.env.FRONTEND_URL],
   methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
 }));
-app.options("*", cors()); // Handle preflight requests
+app.options("*", cors());
 
 app.use(bodyParser.json());
 
-
-const db_uri = process.env.MONGODB_URI;
 mongoose
-    .connect(db_uri)
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.error("Database connection failed:", err));
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Database connection failed:", err));
 
 app.use("/api/events", eventRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/attendees", attendeeRoutes);
 
 app.get("/", (req, res) => {
-    res.send("<h1>Hello from Backend</h1>");
+  res.send("<h1>Hello from Backend</h1>");
 });
 
 const port = 3000;
