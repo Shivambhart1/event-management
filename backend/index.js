@@ -15,7 +15,6 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
-app.options("*", cors());
 
 app.use(bodyParser.json());
 
@@ -32,6 +31,5 @@ app.get("/", (req, res) => {
   res.send("<h1>Hello from Backend</h1>");
 });
 
-const port = 3000;
-const server = http.createServer(app);
-server.listen(port, "0.0.0.0", () => console.log(`Server running on port ${port}`));
+const PORT = process.env.PORT || 6000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
